@@ -19,3 +19,12 @@ def buy(ticker: str, quantity: int):
 
 def sell(ticker: str, quantity: int):
     api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
+
+
+def refresh():
+    global net_money
+    global buying_power
+    global account_value
+
+    for ticker in purchased:
+        
