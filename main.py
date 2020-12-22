@@ -1,7 +1,7 @@
 from time import sleep
 
-from portfolio_manger import query_price
+import portfolio_manger
 
 for i in range(1, 10000):
-    query_price("AAPL")
+    portfolio_manger.get_data("AAPL")
     sleep(5)
