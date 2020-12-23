@@ -46,10 +46,10 @@ def get_data(ticker: str, period='1d'):
     print(data)
 
 
-def query_price(ticker: str):
+def get_price(ticker: str):
     return si.get_live_price(ticker)
 
 
-def query_performance(ticker: str):
+def get_performance(ticker: str):
     ticker = yf.Ticker(ticker)
     print(ticker.recommendations())
