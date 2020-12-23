@@ -34,18 +34,6 @@ def sell(ticker: str, quantity: int):
     api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
 
 
-def get_data(ticker: str):
-    ticker = yf.Ticker(ticker)
-    history = ticker.history(period='1d', interval='1m')
-    data = history.iloc[0].to_dict()
-    data['Gain'] = (data['Close'] - data['Open']) / data['Open']
-
-    del data['Dividends']
-    del data['Stock Splits']
-
-    print(data)
-
-
 def get_data(ticker: str, period='1d'):
     ticker = yf.Ticker(ticker)
     history = ticker.history(period=period, interval='1m')
