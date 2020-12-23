@@ -13,7 +13,12 @@ def init():
 
 
 def look():
-    print()
+    active = portfolio_manger.get_active()
+
+    for ticker in active:
+        if ticker not in portfolio_manger.available:
+            portfolio_manger.available.append(ticker)
+            portfolio_manger.purchased[ticker] = 0
 
 
 def on_market_open(ticker: str):

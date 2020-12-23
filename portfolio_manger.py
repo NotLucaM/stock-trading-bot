@@ -31,7 +31,9 @@ def sell(ticker: str, quantity: int):
 
 
 def get_active():
-    return si.get_day_most_active()
+    active = si.get_day_most_active()
+
+    return active['Symbol']
 
 
 def get_data(ticker: str, period='1d'):
