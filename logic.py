@@ -8,6 +8,7 @@ lookback = {}
 
 ceiling, floor = 30, 10
 
+
 def init():
     for ticker in portfolio_manger.available:
         lookback[ticker] = 30
@@ -25,6 +26,7 @@ def on_market_open(ticker: str):
         lookback[ticker] = ceiling
     elif lookback[ticker] < floor:
         lookback[ticker] = floor
+
 
 def on_update(ticker: str):
     high = portfolio_manger.get_data(ticker)
