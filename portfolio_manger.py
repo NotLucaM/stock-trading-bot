@@ -12,7 +12,7 @@ import KEYS
 
 global api
 api = tradeapi.REST(KEYS.TRADE_KEY_ID, KEYS.TRADE_API_SECRET_KEY, base_url="https://paper-api.alpaca.markets")
-global net_money
+global buying_power
 
 global available
 available = []  # stocks to look at
@@ -25,13 +25,16 @@ yf.pdr_override()
 
 
 def buy(ticker: str, quantity: int):
-    api.submit_order(symbol=ticker, qty=quantity, side='buy', type='market', time_in_force='day')
+    if purchased[ticker] == 0 and buying_power > (quantity * get_price(ticker)):
+        api.submit_order(symbol=ticker, qty=quantity, side='buy', type='market', time_in_force='day')
+        purchased[ticker] = quantity
 
 
 def sell(ticker: str, quantity: int):
     if purchased[ticker] < quantity:
         quantity = purchased[ticker]
     api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
+    purchased[ticker] -= quantity
 
 
 def get_data(ticker: str, period='1d'):

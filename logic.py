@@ -1,10 +1,8 @@
 import numpy as np
 import portfolio_manger
 
-
 global lookback
 lookback = {}
-
 
 ceiling, floor = 30, 10
 
@@ -29,5 +27,8 @@ def on_market_open(ticker: str):
 
 
 def on_update(ticker: str):
-    high = portfolio_manger.get_data(ticker)
+    high = portfolio_manger.get_data(ticker, period='1m')
 
+    if portfolio_manger.purchased[ticker] == 0 \
+            and portfolio_manger.get_price(ticker) >= max(high[:-1]):
+        portfolio_manger.buy(ticker, 1)
