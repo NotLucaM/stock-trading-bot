@@ -13,8 +13,6 @@ global available
 available = []  # stocks to look at
 global purchased  # stocks bought and how much is bought
 purchased = {}
-global security
-security = ''
 
 yf.pdr_override()
 
@@ -30,6 +28,10 @@ def sell(ticker: str, quantity: int):
         quantity = purchased[ticker]
     api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
     purchased[ticker] -= quantity
+
+
+def get_active():
+    si.get_day_most_active()
 
 
 def get_data(ticker: str, period='1d'):

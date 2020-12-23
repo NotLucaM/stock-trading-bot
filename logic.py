@@ -12,6 +12,10 @@ def init():
         lookback[ticker] = 30
 
 
+def look():
+    print()
+
+
 def on_market_open(ticker: str):
     # determine the look back length based on volatility
     close = portfolio_manger.get_data(ticker, period='1m')['Close']
