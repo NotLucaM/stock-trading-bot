@@ -1,12 +1,7 @@
-import threading
-from collections import Counter
-import datetime
-from time import sleep
 from yahoo_fin import stock_info as si
 
 import alpaca_trade_api as tradeapi
 import yfinance as yf
-from pandas_datareader import data as pdr
 
 import KEYS
 
