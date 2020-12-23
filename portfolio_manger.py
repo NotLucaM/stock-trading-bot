@@ -31,7 +31,7 @@ def sell(ticker: str, quantity: int):
 
 
 def get_active():
-    si.get_day_most_active()
+    return si.get_day_most_active()
 
 
 def get_data(ticker: str, period='1d'):
@@ -43,7 +43,7 @@ def get_data(ticker: str, period='1d'):
     del data['Dividends']
     del data['Stock Splits']
 
-    print(data)
+    return data
 
 
 def get_price(ticker: str):
@@ -52,4 +52,4 @@ def get_price(ticker: str):
 
 def get_performance(ticker: str):
     ticker = yf.Ticker(ticker)
-    print(ticker.recommendations())
+    return ticker.recommendations()
