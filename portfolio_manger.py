@@ -44,6 +44,18 @@ def get_data(ticker: str):
     print(data)
 
 
+def get_data(ticker: str, period='1d'):
+    ticker = yf.Ticker(ticker)
+    history = ticker.history(period=period, interval='1m')
+    data = history.iloc[0].to_dict()
+    data['Gain'] = (data['Close'] - data['Open']) / data['Open']
+
+    del data['Dividends']
+    del data['Stock Splits']
+
+    print(data)
+
+
 def query_price(ticker: str):
     return si.get_live_price(ticker)
 
