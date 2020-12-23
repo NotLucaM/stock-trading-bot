@@ -18,6 +18,8 @@ global available
 available = []  # stocks to look at
 global purchased  # stocks bought and how much is bought
 purchased = {}
+global security
+security = ''
 
 yf.pdr_override()
 

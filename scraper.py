@@ -1,7 +1,7 @@
-from portfolio_manger import available
+import portfolio_manger as portfolio
 
 
 def run():
 
-    for ticker in available:
-        continue
+    for ticker in portfolio.available:
+        portfolio.get_data(ticker)
