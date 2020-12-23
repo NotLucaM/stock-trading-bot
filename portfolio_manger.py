@@ -13,25 +13,27 @@ global available
 available = []  # stocks to look at
 global purchased  # stocks bought and how much is bought
 purchased = {}
-global market_open
-market_open = '06:30'
-global market_close
-market_close = '13:30'
+market_open_h = 6
+market_open_m = 30
+market_close_h = 13
+market_close_m = 30
 
 yf.pdr_override()
 
 
 def buy(ticker: str, quantity: int):
-    if purchased[ticker] == 0 and buying_power > (quantity * get_price(ticker)):
-        api.submit_order(symbol=ticker, qty=quantity, side='buy', type='market', time_in_force='day')
-        purchased[ticker] = quantity
+    # if purchased[ticker] == 0 and buying_power > (quantity * get_price(ticker)):
+    #     api.submit_order(symbol=ticker, qty=quantity, side='buy', type='market', time_in_force='day')
+    #     purchased[ticker] = quantity
+    print("buying " + str(quantity) + " " + ticker)
 
 
 def sell(ticker: str, quantity: int):
-    if purchased[ticker] < quantity:
-        quantity = purchased[ticker]
-    api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
-    purchased[ticker] -= quantity
+    # if purchased[ticker] < quantity:
+    #     quantity = purchased[ticker]
+    # api.submit_order(symbol=ticker, qty=quantity, side='sell', type='market', time_in_force='day')
+    # purchased[ticker] -= quantity
+    print("selling " + str(quantity) + " " + ticker)
 
 
 def get_active():
@@ -40,16 +42,19 @@ def get_active():
     return active['Symbol']
 
 
-def get_data(ticker: str, period='1d'):
+def get_data(ticker: str, period='1d', interval='1m'):
     ticker = yf.Ticker(ticker)
-    history = ticker.history(period=period, interval='1m')
-    data = history.iloc[0].to_dict()
-    data['Gain'] = (data['Close'] - data['Open']) / data['Open']
+    history = ticker.history(period=period, interval=interval)
+    del history['Dividends']
+    del history['Stock Splits']
+    # data = history.iloc[0].to_dict()
+    # data['Gain'] = (data['Close'] - data['Open']) / data['Open']
+    # print(data)
+    #
+    # del data['Dividends']
+    # del data['Stock Splits']
 
-    del data['Dividends']
-    del data['Stock Splits']
-
-    return data
+    return history
 
 
 def get_price(ticker: str):

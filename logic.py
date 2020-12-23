@@ -21,11 +21,12 @@ def look():
         if ticker not in portfolio_manger.available:
             portfolio_manger.available.append(ticker)
             portfolio_manger.purchased[ticker] = 0
+            lookback[ticker] = 30
 
 
 def on_market_open(ticker: str):
     # determine the look back length based on volatility
-    close = portfolio_manger.get_data(ticker, period='1m')['Close']
+    close = portfolio_manger.get_data(ticker, period='2mo', interval='1d')['Close']
     today_volatility = np.std(close[1:31])
     yesterday_volatility = np.std(close[0:30])
     delta_volatility = (today_volatility - yesterday_volatility) / today_volatility
@@ -38,7 +39,7 @@ def on_market_open(ticker: str):
 
 
 def on_update(ticker: str):
-    high = portfolio_manger.get_data(ticker, period='1m')
+    high = portfolio_manger.get_data(ticker, period='1d', interval='1m')['High']
 
     if portfolio_manger.purchased[ticker] == 0 \
             and portfolio_manger.get_price(ticker) >= max(high[:-1]):
