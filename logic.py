@@ -3,6 +3,8 @@ import portfolio_manger
 
 global lookback
 lookback = {}
+global stop_loss
+stop_loss = 0.02
 
 ceiling, floor = 30, 10
 

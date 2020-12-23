@@ -13,6 +13,10 @@ global available
 available = []  # stocks to look at
 global purchased  # stocks bought and how much is bought
 purchased = {}
+global market_open
+market_open = '06:30'
+global market_close
+market_close = '13:30'
 
 yf.pdr_override()
 
