@@ -51,6 +51,8 @@ def get_data(ticker: str, period='1d', interval='1m'):
     ticker = yf.Ticker(ticker)
     history = ticker.history(period=period, interval=interval)
     if len(history) == 0:
+        global available
+        available.remove(ticker.ticker)
         return True
     del history['Dividends']
     del history['Stock Splits']
