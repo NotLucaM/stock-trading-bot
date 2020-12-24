@@ -18,6 +18,7 @@ while True:
         if portfolio_manger.market_close_h <= now.hour:
             if portfolio_manger.market_close_m <= now.minute:
                 break
+                print('ended')
 
         for ticker in portfolio_manger.available:
             logic.on_update(ticker)
