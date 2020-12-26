@@ -51,4 +51,4 @@ def on_update(ticker: str):
         return
     if portfolio_manger.purchased[ticker] == 0 \
             and portfolio_manger.get_price(ticker) >= max(high[:-1]):
-        portfolio_manger.buy(ticker, 1)
+        portfolio_manger.buy(ticker, 10)
