@@ -12,6 +12,7 @@ ceiling, floor = 15, 1
 def init():
     for ticker in portfolio_manger.available:
         lookback[ticker] = ceiling
+        portfolio_manger.purchased[ticker] = 0
 
 
 def look():

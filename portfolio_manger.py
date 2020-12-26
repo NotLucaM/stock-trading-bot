@@ -11,7 +11,7 @@ global buying_power
 buying_power = 100000
 
 global available
-available = []  # stocks to look at
+available = ['GOOGL', 'AMZN']  # stocks to look at
 global purchased  # stocks bought and how much is bought
 purchased = {}
 market_open_h = 6

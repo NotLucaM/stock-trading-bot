@@ -7,7 +7,7 @@ import time
 import portfolio_manger
 import logic
 
-
+logic.init()
 while True:
     logic.look()
     for ticker in portfolio_manger.available:
