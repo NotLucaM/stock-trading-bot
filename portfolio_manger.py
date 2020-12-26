@@ -61,7 +61,10 @@ def get_data(ticker: str, period='1d', interval='1m'):
 
 
 def get_price(ticker: str):
-    return si.get_live_price(ticker)
+    try:
+        return si.get_live_price(ticker)
+    except AssertionError:
+        return True
 
 
 def get_performance(ticker: str):
