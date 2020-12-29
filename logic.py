@@ -51,5 +51,5 @@ def on_update(ticker: str):
     if type(portfolio_manger.get_price(ticker)) is bool:
         return
     if portfolio_manger.purchased[ticker] == 0 \
-            and portfolio_manger.get_price(ticker) >= max(high[:-1]):
+            and portfolio_manger.get_price(ticker) >= max(high[:-1]) if len(high) >= 1 else high[0]:
         portfolio_manger.buy(ticker, 10)
